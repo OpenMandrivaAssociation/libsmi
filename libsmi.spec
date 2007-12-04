@@ -14,7 +14,7 @@ Group:		System/Libraries
 Source0:	ftp://ftp.ibr.cs.tu-bs.de/pub/local/libsmi/%{name}-%{version}.tar.bz2
 #Patch0:		libsmi-0.4.1-sysconfdir.patch.bz2
 URL:		http://www.ibr.cs.tu-bs.de/projects/libsmi/
-Prereq:		fileutils
+Requires:		coreutils
 BuildRequires:	flex
 BuildRequires:	bison
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
