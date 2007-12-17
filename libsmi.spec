@@ -17,7 +17,6 @@ URL:		http://www.ibr.cs.tu-bs.de/projects/libsmi/
 Requires:		coreutils
 BuildRequires:	flex
 BuildRequires:	bison
-BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
 
 # config file, could be %{_sysconf}/smi.conf
 %define file_config	%{_sysconfdir}/smi.conf
