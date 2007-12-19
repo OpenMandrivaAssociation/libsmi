@@ -71,7 +71,7 @@ This package contains standard MIB files for use with the SMI Library:
 %package	mibs-ext
 Summary:	Extended MIB files for LibSMI
 Group:		System/Libraries
-PreReq:		smi-tools = %{version}
+Requires:	smi-tools = %{version}
 
 %description	mibs-ext
 This package contains Extended MIB files for use with the SMI Library:
