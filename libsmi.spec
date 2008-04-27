@@ -9,18 +9,18 @@
 
 Summary:	LibSMI deals with SNMP MIBS definitions
 Name:		libsmi
-Version:	0.4.5
-Release:	%mkrel 2
+Version:	0.4.8
+Release:	%mkrel 1
 License:	BSD-like
 Group:		System/Libraries
 URL:		http://www.ibr.cs.tu-bs.de/projects/libsmi/
-Source0:	ftp://ftp.ibr.cs.tu-bs.de/pub/local/libsmi/%{name}-%{version}.tar.bz2
+Source0:	ftp://ftp.ibr.cs.tu-bs.de/pub/local/libsmi/%{name}-%{version}.tar.gz
 Requires:	coreutils
 BuildRequires:	bison
 BuildRequires:	flex
 BuildRequires:  libtool
 BuildRequires:	wget
-Buildroot:	%{_tmppath}/%{name}-%{version}-%{release}-root
+Buildroot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
 
 %description
 This package contains the SMI library and standard IETF and IANA Mibs. This
@@ -108,9 +108,17 @@ This package contains the LibSMI tools.
 make check ||:
 
 %install
-[ "%{buildroot}" != "/" ] && rm -rf %{buildroot}
+rm -rf %{buildroot}
 
 %makeinstall_std
+
+# something broke here...
+rm -f %{buildroot}%{pibsdir}/*PIB*
+rm -f %{buildroot}%{pibsdir}/*SPPI*
+install -m0644 pibs/ietf/* %{buildroot}%{pibsdir}/ietf/
+install -m0644 pibs/site/* %{buildroot}%{pibsdir}/site/
+install -m0644 pibs/tubs/* %{buildroot}%{pibsdir}/tubs/
+find %{buildroot}%{pibsdir}/ -name "Makefile*" | xargs rm -f
 
 install -d %{buildroot}%{_sysconfdir}
 
@@ -175,7 +183,7 @@ for DIR in irtf tubs ; do
 done
 
 %clean
-[ "%{buildroot}" != "/" ] && rm -rf %{buildroot}
+rm -rf %{buildroot}
 
 %files -n %{libname}
 %defattr(-,root,root,0755)
