@@ -170,9 +170,13 @@ install -m0644 smi.conf %{buildroot}%{_sysconfdir}/smi.conf
 install -d %{buildroot}%{mibsdir}/site
 install -d %{buildroot}%{pibsdir}/site
 
+%if %mdkversion < 200900
 %post -n %{libname} -p /sbin/ldconfig
+%endif
 
+%if %mdkversion < 200900
 %postun -n %{libname} -p /sbin/ldconfig
+%endif
 
 %post mibs-ext
 ## Append to config file: path for irtf and tubs
