@@ -10,12 +10,13 @@
 Summary:	LibSMI deals with SNMP MIBS definitions
 Name:		libsmi
 Version:	0.4.8
-Release:	%mkrel 5
+Release:	%mkrel 6
 License:	BSD-like
 Group:		System/Libraries
 URL:		http://www.ibr.cs.tu-bs.de/projects/libsmi/
 Source0:	ftp://ftp.ibr.cs.tu-bs.de/pub/local/libsmi/%{name}-%{version}.tar.gz
 Patch0:		libsmi-0.4.8-format_not_a_string_literal_and_no_format_arguments.diff
+Patch1:		libsmi-0.4.8-CVE-2010-2891.diff
 Requires:	coreutils
 BuildRequires:	bison
 BuildRequires:	flex
@@ -93,6 +94,7 @@ This package contains the LibSMI tools.
 
 %setup -q -n %{name}-%{version}
 %patch0 -p0 -b .format_not_a_string_literal_and_no_format_arguments
+%patch1 -p0 -b .CVE-2010-2891
 
 %build
 
