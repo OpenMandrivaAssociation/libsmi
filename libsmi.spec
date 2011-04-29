@@ -10,7 +10,7 @@
 Summary:	LibSMI deals with SNMP MIBS definitions
 Name:		libsmi
 Version:	0.4.8
-Release:	%mkrel 6
+Release:	%mkrel 7
 License:	BSD-like
 Group:		System/Libraries
 URL:		http://www.ibr.cs.tu-bs.de/projects/libsmi/
