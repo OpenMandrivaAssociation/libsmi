@@ -10,7 +10,7 @@
 Summary:	LibSMI deals with SNMP MIBS definitions
 Name:		libsmi
 Version:	0.4.8
-Release:	%mkrel 7
+Release:	8
 License:	BSD-like
 Group:		System/Libraries
 URL:		http://www.ibr.cs.tu-bs.de/projects/libsmi/
@@ -20,9 +20,8 @@ Patch1:		libsmi-0.4.8-CVE-2010-2891.diff
 Requires:	coreutils
 BuildRequires:	bison
 BuildRequires:	flex
-BuildRequires:  libtool
+BuildRequires:  autoconf automake libtool
 BuildRequires:	wget
-Buildroot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
 
 %description
 This package contains the SMI library and standard IETF and IANA Mibs. This
@@ -50,7 +49,7 @@ User config file:   .smirc
 %package -n	%{develname}
 Summary:	Development tools for LibSMI
 Group:		Development/Other
-Requires:	%{libname} = %{version}
+Requires:	%{libname} >= %{version}-%{release}
 Provides:	smi-devel = %{version}-%{release}
 Provides:	libsmi-devel = %{version}-%{release}
 Obsoletes:	%{mklibname smi 2 -d}
@@ -62,7 +61,7 @@ applications based on the SMI Library
 %package	mibs-std
 Summary:	Standard MIB files for LibSMI
 Group:		System/Libraries
-Requires:	smi-tools = %{version}
+Requires:	smi-tools >= %{version}-%{release}
 
 %description	mibs-std
 This package contains standard MIB files for use with the SMI Library:
@@ -174,13 +173,8 @@ install -m0644 smi.conf %{buildroot}%{_sysconfdir}/smi.conf
 install -d %{buildroot}%{mibsdir}/site
 install -d %{buildroot}%{pibsdir}/site
 
-%if %mdkversion < 200900
-%post -n %{libname} -p /sbin/ldconfig
-%endif
-
-%if %mdkversion < 200900
-%postun -n %{libname} -p /sbin/ldconfig
-%endif
+# cleanups
+rm -f %{buildroot}%{_libdir}/*.*a
 
 %post mibs-ext
 ## Append to config file: path for irtf and tubs
@@ -190,29 +184,22 @@ for DIR in irtf tubs ; do
   echo "path :%{mibsdir}/${DIR}" >> %{_sysconfdir}/smi.conf
 done
 
-%clean
-rm -rf %{buildroot}
 
 %files -n %{libname}
-%defattr(-,root,root,0755)
 %doc ANNOUNCE COPYING README THANKS smi.conf-example
 %attr(0644,root,root) %config(noreplace) %{_sysconfdir}/smi.conf
 %attr(0755,root,root) %{_libdir}/lib*.so.*
 
 %files -n %{develname}
-%defattr(-,root,root,0755)
 %doc TODO doc/draft-irtf-nmrg-sming-02.txt
 %attr(0644,root,root) %{_includedir}/*.h
 %attr(0755,root,root) %{_libdir}/lib*.so
-%attr(0644,root,root) %{_libdir}/lib*.a
-%attr(0755,root,root) %{_libdir}/lib*.la
 %attr(0644,root,root) %{_datadir}/aclocal/*.m4
 %attr(0644,root,root) %{_libdir}/pkgconfig/libsmi.pc
 %attr(0644,root,root) %{_mandir}/man3/libsmi.3*
 %attr(0644,root,root) %{_mandir}/man3/smi_*.3*
 
 %files mibs-std
-%defattr(-,root,root,0755)
 %dir %{mibsdir}
 %dir %{mibsdir}/iana
 %dir %{mibsdir}/ietf
@@ -221,7 +208,6 @@ rm -rf %{buildroot}
 %{mibsdir}/ietf/*
 
 %files mibs-ext
-%defattr(-,root,root,0755)
 %dir %{mibsdir}/irtf
 %dir %{mibsdir}/tubs
 %{mibsdir}/irtf/*
@@ -234,6 +220,5 @@ rm -rf %{buildroot}
 %{pibsdir}/tubs/*
 
 %files -n smi-tools
-%defattr(-,root,root,0755)
 %attr(0755,root,root) %{_bindir}/smi*
 %attr(0644,root,root) %{_mandir}/man1/smi*.1*
