@@ -1,0 +1,20 @@
+--- ./tools/dump-tree.c	2008-04-18 14:56:34.000000000 +0200
++++ ./tools/dump-tree.c.oden	2008-12-20 22:34:01.000000000 +0100
+@@ -117,7 +117,7 @@ static void fprintIndex(FILE *f, SmiNode
+ 	 smiElement; smiElement = smiGetNextElement(smiElement), i++) {
+ 	if (i > 0) fprintf(f, ",");
+ 	if (indexname) {
+-	    fprintf(f, indexname);
++	    fprintf(f, "%s", indexname);
+ 	}
+ 	indexname = smiGetElementNode(smiElement)->name;
+     }
+@@ -143,7 +143,7 @@ static void fprintObjects(FILE *f, SmiNo
+ 	 smiElement = smiGetNextElement(smiElement), i++) {
+ 	if (i > 0) fprintf(f, ",");
+ 	if (objectname) {
+-	    fprintf(f, objectname);
++	    fprintf(f, "%s", objectname);
+ 	}
+ 	objectname = smiGetElementNode(smiElement)->name;
+     }
