@@ -10,7 +10,7 @@
 Summary:	LibSMI deals with SNMP MIBS definitions
 Name:		libsmi
 Version:	0.4.8
-Release:	8
+Release:	9
 License:	BSD-like
 Group:		System/Libraries
 URL:		http://www.ibr.cs.tu-bs.de/projects/libsmi/
@@ -222,3 +222,84 @@ done
 %files -n smi-tools
 %attr(0755,root,root) %{_bindir}/smi*
 %attr(0644,root,root) %{_mandir}/man1/smi*.1*
+
+
+%changelog
+* Fri Apr 29 2011 Oden Eriksson <oeriksson@mandriva.com> 0.4.8-7mdv2011.0
++ Revision: 660282
+- mass rebuild
+
+* Fri Oct 22 2010 Oden Eriksson <oeriksson@mandriva.com> 0.4.8-6mdv2011.0
++ Revision: 587317
+- P1: security fix for CVE-2010-2891
+
+* Sun Mar 14 2010 Oden Eriksson <oeriksson@mandriva.com> 0.4.8-5mdv2010.1
++ Revision: 519030
+- rebuild
+
+* Wed Sep 02 2009 Christophe Fergeau <cfergeau@mandriva.com> 0.4.8-4mdv2010.0
++ Revision: 425750
+- rebuild
+
+* Sat Dec 20 2008 Oden Eriksson <oeriksson@mandriva.com> 0.4.8-3mdv2009.1
++ Revision: 316811
+- fix build with -Werror=format-security (P0)
+
+* Wed Aug 06 2008 Thierry Vignaud <tv@mandriva.org> 0.4.8-2mdv2009.0
++ Revision: 264892
+- rebuild early 2009.0 package (before pixel changes)
+
+  + Pixel <pixel@mandriva.com>
+    - do not call ldconfig in %%post/%%postun, it is now handled by filetriggers
+
+  + Oden Eriksson <oeriksson@mandriva.com>
+    - 0.4.8
+
+* Wed Dec 19 2007 Oden Eriksson <oeriksson@mandriva.com> 0.4.5-2mdv2008.1
++ Revision: 134107
+- nuke remaining prereq
+- rework the spec file
+
+  + Thierry Vignaud <tv@mandriva.org>
+    - kill re-definition of %%buildroot on Pixel's request
+    - fix obsolete require & replace prereq by require
+    - import libsmi
+
+
+* Sun Jun 18 2006 Emmanuel Andry <eandry@mandriva.org> 0.4.5-1mdv2007.0
+- 0.4.5
+- %%mkrel
+- drop patch0 (applied upstream)
+
+* Wed Dec 22 2004 Per Øyvind Karlsen <peroyvind@linux-mandrake.com> 0.4.3-1mdk
+- 0.4.3
+
+* Fri Feb 27 2004 Olivier Thauvin <thauvin@aerov.jussieu.fr> 0.4.1-3mdk
+- Own dir (distlint)
+
+* Thu Jul 10 2003 Oden Eriksson <oden.eriksson@kvikkjokk.net> 0.4.1-2mdk
+- rebuild
+
+* Sun Jun 29 2003 Oden Eriksson <oden.eriksson@kvikkjokk.net> 0.4.1-1mdk
+- libi and macrofiction
+- run make check
+- added P0
+- broke out the utilities into the smi-tools sub package
+- misc spec file fixes
+
+* Fri Jan 24 2003 Lenny Cartier <lenny@mandrakesoft.com> 0.4.0-2mdk
+- rebuild
+
+* Thu Aug 29 2002 Lenny Cartier <lenny@mandrakesoft.com>  0.4.0-1mdk
+- 0.4.0
+
+* Mon Aug 20 2001 Lenny Cartier <lenny@mandrakesoft.com>  0.2.16-1mdk
+- updated to 0.2.16
+
+* Mon Feb 26 2001 Lenny Cartier <lenny@mandrakesoft.com>  0.2.13-1mdk
+- added in contribs by Olivier Montanuy <olivier.montanuy@wanadoo.fr> :
+	- Attempt to make it conform to Mandrake packaging rules. rpmlint.
+
+* Mon Feb 05 2001 Olivier Montanuy <olivier.montanuy@wanadoo.fr> 0.2.13-2
+- First spec file for Mandrake distribution.
+
