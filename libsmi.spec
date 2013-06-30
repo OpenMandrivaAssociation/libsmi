@@ -93,7 +93,7 @@ This package contains the LibSMI tools.
 
 %build
 %configure2_5x \
-	--disabl-static \
+	--disable-static \
 	--with-mibdir=%{mibsdir} \
 	--with-pibdir=%{pibsdir} \
 	--with-smipath=%{mibsdir}/site:%{mibsdir}/ietf:%{mibsdir}/iana \
