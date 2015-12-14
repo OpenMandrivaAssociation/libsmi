@@ -7,6 +7,8 @@
 %define libname	%mklibname smi %{major}
 %define devname	%mklibname smi -d
 
+%define _disable_lto 1
+
 Summary:	LibSMI deals with SNMP MIBS definitions
 Name:		libsmi
 Version:	0.4.8
