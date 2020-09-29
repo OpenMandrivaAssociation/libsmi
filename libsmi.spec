@@ -12,7 +12,7 @@
 Summary:	LibSMI deals with SNMP MIBS definitions
 Name:		libsmi
 Version:	0.4.8
-Release:	20
+Release:	21
 License:	BSD-like
 Group:		System/Libraries
 Url:		http://www.ibr.cs.tu-bs.de/projects/libsmi/
@@ -94,7 +94,7 @@ This package contains the LibSMI tools.
 %patch1 -p0 -b .CVE-2010-2891
 
 %build
-%configure2_5x \
+%configure \
 	--disable-static \
 	--with-mibdir=%{mibsdir} \
 	--with-pibdir=%{pibsdir} \
@@ -102,14 +102,14 @@ This package contains the LibSMI tools.
 	--enable-smi \
 	--enable-sming
 
-%make
+%make_build
 
 %check
 # fails a couple of tests (2 in {0.4.4, 0.4.5})
 make check ||:
 
 %install
-%makeinstall_std
+%make_install
 
 # something broke here...
 rm -f %{buildroot}%{pibsdir}/*PIB*
