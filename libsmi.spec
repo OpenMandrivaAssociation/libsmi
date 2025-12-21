@@ -19,6 +19,11 @@ Url:		https://www.ibr.cs.tu-bs.de/projects/libsmi/
 Source0:	ftp://ftp.ibr.cs.tu-bs.de/pub/local/libsmi/%{name}-%{version}.tar.gz
 Patch0:		libsmi-0.4.8-format_not_a_string_literal_and_no_format_arguments.diff
 Patch1:		libsmi-0.4.8-CVE-2010-2891.diff
+BuildRequires:	autoconf
+BuildRequires:	automake
+BuildRequires:	libtool-base
+BuildRequires:	slibtool
+BuildRequires:	make
 BuildRequires:	bison
 BuildRequires:	flex
 BuildRequires:  libtool
